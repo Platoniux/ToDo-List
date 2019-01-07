@@ -3,7 +3,7 @@ import TodoList from './TodoList';
 import ListItems from './ListItems';
 
 class App extends Component {
-  inputElement = React.createRef()
+  inputElement = React.createRef();
   constructor() {
     super();
     this.state = {
@@ -23,20 +23,20 @@ class App extends Component {
       items: filteredItems,
     });
     localStorage.setItem("list", JSON.stringify(filteredItems));
-  }
+  };
 
   handleInput = e => {
-    const itemText = e.target.value
+    const itemText = e.target.value;
     const currentItem = { text: itemText, key: Date.now() }
     this.setState({
       currentItem,
     });
     localStorage.setItem(currentItem.key, currentItem.text);
-  }
+  };
 
   addItem = e => {
-    e.preventDefault()
-    const newItem = this.state.currentItem
+    e.preventDefault();
+    const newItem = this.state.currentItem;
     if (newItem.text !== '') {
       const items = [...this.state.items, newItem]
       this.setState({
@@ -46,7 +46,7 @@ class App extends Component {
       localStorage.setItem("items", JSON.stringify(items));
       localStorage.setItem("newItem", "");
     }
-  }
+  };
 
   hydrateStateWithLocalStorage() {
     for (let key in this.state) {
